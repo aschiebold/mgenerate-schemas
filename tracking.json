@@ -1,0 +1,29 @@
+{
+        "id": {
+            "$numberLong": {
+                "fixed": 14
+            }
+        },
+        "date": "$date",
+        "location": {
+            "city": "$city",
+            "state": "$state"
+        },
+        "gps": "$coordinates",
+        "activity": {
+            "$choose": {
+                "from": [
+                    "OriginScan",
+                    "DepartureScan",
+                    "ExportScan",
+                    "CustomsEntry",
+                    "CustomsExit",
+                    "ImportScan",
+                    "DestinationScan",
+                    "OutOnDelivery",
+                    "Delivered"
+                ]
+            }
+        },
+        "internal": "$bool"
+    }
