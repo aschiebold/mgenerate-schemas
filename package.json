@@ -1,0 +1,134 @@
+{
+    "trackingNum": {
+        "$numberLong": {
+            "fixed": 14
+        }
+    },
+    "RFID": {
+        "$numberLong": {
+            "fixed": 12
+        }
+    },
+    "status": {
+        "$choose": {
+            "from": [
+                "Received",
+                "AtOrigin",
+                "InCustoms",
+                "InTransit",
+                "AtDestinationWarehouse",
+                "OutOnDelivery",
+                "Delivered",
+                "Exception",
+                "Returned"
+            ]
+        }
+    },
+    "scheduled": "$date",
+    "fromAddress": {
+        "country": "$country",
+        "state": "$state",
+        "city": "$city",
+        "zip": "$zip",
+        "street": "$street",
+        "street2": "$street"
+    },
+    "toAddress": {
+        "country": "$country",
+        "state": "$state",
+        "city": "$city",
+        "zip": "$zip",
+        "street": "$street",
+        "street2": "$street"
+    },
+    "shipDate": "$date",
+    "serviceType": {
+        "$choose": {
+            "from": [
+                "ExpressPlus",
+                "express",
+                "ExpressSaver",
+                "standard"
+            ]
+        }
+    },
+    "weight": {
+        "$numberLong": {
+            "max": 100
+        }
+    },
+    "length": {
+        "$numberLong": {
+            "max": 100
+        }
+    },
+    "width": {
+        "$numberLong": {
+            "max": 100
+        }
+    },
+    "height": {
+        "$numberLong": {
+            "max": 100
+        }
+    },
+    "oversized": "$bool",
+    "payment": {
+        "method": {
+            "$choose": {
+                "from": [
+                    {
+                        "card": {
+                            "type": {
+                                "$choose": {
+                                    "from": [
+                                        "credit",
+                                        "debit"
+                                    ]
+                                }
+                            },
+                            "number": {
+                                "$numberLong": {
+                                    "fixed": 16
+                                }
+                            },
+                            "expiration": {
+                                "$numberLong": {
+                                    "fixed": 4
+                                }
+                            },
+                            "cvv": {
+                                "$numberLong": {
+                                    "fixed": 3
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "paypal": "$guid"
+                    },
+                    {
+                        "cash": {
+                            "id": {
+                                "$numberLong": {
+                                    "fixed": 14
+                                }
+                            },
+                            "country": "$country",
+                            "state": "$state",
+                            "city": "$city",
+                            "zip": "$zip",
+                            "street": "$street",
+                            "street2": "$street"
+                        }
+                    }
+                ]
+            }
+        },
+        "vat": {
+            "$numberLong": {
+                "fixed": 14
+            }
+        }
+    }
+}
